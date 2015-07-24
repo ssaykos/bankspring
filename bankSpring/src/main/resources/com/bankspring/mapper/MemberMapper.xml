@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bankspring.mapper.MemberMapper">
+    
+    <insert id="insert" parameterType="Member">
+        insert into member values(member_idx_seq.nextVal,
+        #{member_name}, #{member_id}, #{member_pw}, #{member_phone1}||#{member_phone2}||#{member_phone3}, 
+        #{member_email}||#{member_email2}, sysdate, sysdate, #{admin})
+    </insert>
+    
+    <update id="update" parameterType="Member" >
+        update member set member_name=#{member_name}, 
+                          member_pw=#{member_pw} , 
+                          member_phone=#{member_phone1}||#{member_phone2}||#{member_phone3},
+                          member_email=#{member_email}||#{member_email2},
+                          admin=#{admin},
+                          last_chg_date=sysdate
+        where member_id=#{member_id}
+    </update>
+    
+    
+    <!-- 로그인 -->
+    <select id="login" parameterType="Member" resultType="int">
+        select count(*) from member where userid=#{userid} and member_pw=#{member_pw}
+    </select>
+ 
+    <select id="getElementById" resultType="Member" parameterType="Member">
+        select substr(member_email,1, instr(member_email,'@')-1) as member_email,
+        substr(member_email, instr(member_email,'@')+1) as member_email2,
+        member_name, member_phone, member_id, admin
+        from member
+        where  member_id = #{value}
+    </select>
+    
+    <select id="list" parameterType="Member" resultType="Member">
+        select * 
+          from member
+          where ${searchKey} like '%' || #{searchValue} || '%'
+    </select>    
+    
+    <select id="selectOne" parameterType="String" resultType="Member">
+         select * from member where member_id=#{member_id} 
+    </select>
+    
+    <select id="searchCount" parameterType="Member" resultType="int">
+        select count(member_id) 
+          from member
+         where ${searchKey} like '%' || #{searchValue} || '%'
+    </select>
+    
+    <select id="count" resultType="int">
+        select count(*) from member
+    </select>
+    
+    <!-- id/pw찾기 -->
+    <select id="loginSearch" parameterType="Member" resultType="int">
+        select count(*) from member where member_name=#{member_name} and member_email=#{member_email}
+    </select>
+    
+    <!-- id/pw2찾기 -->
+    <select id="getElementsByName" parameterType="Member" resultType="String">
+        select member_id from member where member_name=#{member_name} and member_email=#{member_email}
+    </select>    
+    
+    <!-- delete 삭제 -->
+    <delete id="delete" parameterType="String">
+        delete from member where member_id=#{mem_id} 
+    </delete>
+ 
+    <!-- id 중복체크 -->
+    <select id="idCheck" parameterType="Member" resultType="int">
+        select count(*) from member where member_id=#{value} 
+    </select>        
+    
+</mapper>
