@@ -23,13 +23,13 @@ public interface MemberMapper {
 	public int delete(MemberDto member);
 	
 	/*
-	 * 요소의 갯수 
+	 * 요소의 전체 갯수 
 	 * */
-	public int count(Command command);
+	public int countAll(Command command);
 	/*
 	 * 검색결과로 나온 요소의 갯수
 	 * */
-	public int searchCount(Command command);
+	public int countSome(Command command);
 	/*
 	 * ID 로 중복값 없이 추출
 	 * */

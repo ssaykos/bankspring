@@ -34,13 +34,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where  member_id = #{value}
     </select>
     
-    <select id="list" parameterType="Member" resultType="Member">
-        select * 
-          from member
-          where ${searchKey} like '%' || #{searchValue} || '%'
+    <select id="list" resultType="Member" parameterType="Command">
+       select * 
+       from (select rownum as seq, m.* from Member m)
+       where seq between #{start} and #{end}
+       order by regdate desc
     </select>    
     
-    <select id="selectOne" parameterType="String" resultType="Member">
+    <select id="selectOne" resultType="Member" parameterType="String">
          select * from member where member_id=#{member_id} 
     </select>
     
@@ -50,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          where ${searchKey} like '%' || #{searchValue} || '%'
     </select>
     
-    <select id="count" resultType="int">
+    <select id="countAll" resultType="int">
         select count(*) from member
     </select>
     

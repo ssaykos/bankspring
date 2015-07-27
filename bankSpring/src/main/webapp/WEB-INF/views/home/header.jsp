@@ -12,7 +12,7 @@
 	<div id="login">
 		<a href="#joinForm" id="aJoin" class="popupOpen">회원가입</a> | 
 		<a href="#loginForm" id="aLogin" class="popupOpen">로그인</a> | 
-		<a href="${root}/member/adminForm.do">관리자</a>
+		<a href="${root}/admin/member.do?command=list&pageNo=1">관리자</a>
 	</div>
 	<div class="clear"></div>
 	<nav id="topMenu">

@@ -24,7 +24,9 @@ public interface MemberService {
     /*login : 로그인*/
     public String login(Command command);
     /*count : 회원수*/
-    public int memberCount(Command command);
+    public int memberCountAll(Command command);
+    /*count : 특정 회원수*/
+    public int memberCountSome(Command command);
     /*getElementById : 회원상세정보*/
     public MemberDto memberDetail(Command command);
     
