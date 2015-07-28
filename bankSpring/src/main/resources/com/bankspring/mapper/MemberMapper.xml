@@ -5,9 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.bankspring.mapper.MemberMapper">
     
     <insert id="insert" parameterType="Member">
-        insert into member values(member_idx_seq.nextVal,
-        #{member_name}, #{member_id}, #{member_pw}, #{member_phone1}||#{member_phone2}||#{member_phone3}, 
-        #{member_email}||#{member_email2}, sysdate, sysdate, #{admin})
+        insert into member(userid, password, name, age, email, is_admin, regdate) 
+        values(#{userid},#{password},#{name},#{age},#{email},0,sysdate)
     </insert>
     
     <update id="update" parameterType="Member" >
@@ -22,16 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     
     <!-- 로그인 -->
-    <select id="login" parameterType="Member" resultType="int">
-        select count(*) from member where userid=#{userid} and member_pw=#{member_pw}
+    <select id="login" resultType="Member" parameterType="Command">
+        select * from member where userid=#{searchKey} and password=#{searchVal}
     </select>
  
-    <select id="getElementById" resultType="Member" parameterType="Member">
-        select substr(member_email,1, instr(member_email,'@')-1) as member_email,
-        substr(member_email, instr(member_email,'@')+1) as member_email2,
-        member_name, member_phone, member_id, admin
+    <select id="getElementById" resultType="Member" parameterType="Command">
+        select * 
         from member
-        where  member_id = #{value}
+        where ${searchKey} = #{searchVal}
     </select>
     
     <select id="list" resultType="Member" parameterType="Command">
@@ -45,10 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          select * from member where member_id=#{member_id} 
     </select>
     
-    <select id="searchCount" parameterType="Member" resultType="int">
-        select count(member_id) 
+    <select id="countSome" resultType="int" parameterType="Command">
+        select count(*) 
           from member
-         where ${searchKey} like '%' || #{searchValue} || '%'
+         where ${searchKey} like '%' || #{searchVal} || '%'
     </select>
     
     <select id="countAll" resultType="int">
@@ -60,9 +57,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select count(*) from member where member_name=#{member_name} and member_email=#{member_email}
     </select>
     
-    <!-- id/pw2찾기 -->
-    <select id="getElementsByName" parameterType="Member" resultType="String">
-        select member_id from member where member_name=#{member_name} and member_email=#{member_email}
+    <!-- 이름으로 회원 검색 -->
+    <select id="getElementsByName" resultType="Member" parameterType="Command">
+		select * 
+		from (select rownum as seq, m.* from Member m where ${searchKey} like '%' || #{searchVal} || '%')
+		where seq between #{start} and #{end}
+		order by regdate desc
+		
     </select>    
     
     <!-- delete 삭제 -->

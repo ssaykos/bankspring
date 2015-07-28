@@ -56,11 +56,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public String login(Command command) {
+	public MemberDto login(Command command) {
 		logger.info("[서비스]회원목록 아이디={}",command.getSearchKey());
-		String msg = "";
-		
-		return msg;
+		return memberMapper.login(command);
 	}
     @Override
     public List<MemberDto> memberList(Command command) {
@@ -68,9 +66,9 @@ public class MemberServiceImpl implements MemberService{
         return  memberMapper.list(command);
     }
 	@Override
-	public int memberCountAll(Command command) {
-		logger.info("[서비스]전체회원수={}",command.getPageNo());
-		return memberMapper.countAll(command);
+	public int memberCountAll() {
+		logger.info("[서비스]전체회원수 지나가는중");
+		return memberMapper.countAll();
 	}
 	@Override
 	public int memberCountSome(Command command) {

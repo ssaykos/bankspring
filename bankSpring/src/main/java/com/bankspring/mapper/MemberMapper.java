@@ -25,7 +25,7 @@ public interface MemberMapper {
 	/*
 	 * 요소의 전체 갯수 
 	 * */
-	public int countAll(Command command);
+	public int countAll();
 	/*
 	 * 검색결과로 나온 요소의 갯수
 	 * */
@@ -42,4 +42,8 @@ public interface MemberMapper {
 	 * 전체 목록 추출
 	 * */
 	public List<MemberDto> list(Command command);
+	/*
+	 * 로그인
+	 * */
+	public MemberDto login(Command command);
 }

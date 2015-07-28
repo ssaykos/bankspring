@@ -22,9 +22,9 @@ public interface MemberService {
     /*list : 회원전체 목록*/
     public List<MemberDto> memberList(Command command);
     /*login : 로그인*/
-    public String login(Command command);
+    public MemberDto login(Command command);
     /*count : 회원수*/
-    public int memberCountAll(Command command);
+    public int memberCountAll();
     /*count : 특정 회원수*/
     public int memberCountSome(Command command);
     /*getElementById : 회원상세정보*/

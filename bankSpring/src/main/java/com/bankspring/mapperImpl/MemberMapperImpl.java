@@ -52,15 +52,21 @@ public class MemberMapperImpl implements MemberMapper{
 	}
 
 	@Override
-	public int countAll(Command command) {
+	public int countAll() {
 		return sqlSession.selectOne(
-				namespace+"countAll",command);
+				namespace+"countAll");
 	}
 
 	@Override
 	public int countSome(Command command) {
 		return sqlSession.selectOne(
 				namespace+"countSome",command);
+	}
+
+	@Override
+	public MemberDto login(Command command) {
+		return sqlSession.selectOne(
+				namespace+"login",command);
 	}
 	
 

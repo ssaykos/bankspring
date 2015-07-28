@@ -7,7 +7,7 @@
 <style>@import url(${context}/css/common.css);</style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
     
-    <form action="<%=request.getContextPath()%>/member/join.do" method="post" name="frmJoin">
+    <form action="${root}/member/join.do" method="post" name="frmJoin">
         <fieldset>
         <legend>회원 가입</legend>
         <table>
@@ -20,7 +20,7 @@
             <tr>
                 <td>ID </td>
                 <td>
-                    <input type="text" id="id" name="id" placeholder="ID 값을 입력하세요" />
+                    <input type="text" id="userid" name="userid" placeholder="ID 값을 입력하세요" />
                 </td>
             </tr>
             <tr>

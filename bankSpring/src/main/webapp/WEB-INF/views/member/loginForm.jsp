@@ -14,7 +14,7 @@
             <tr>
                 <td>아이디 </td>
                 <td>
-                    <input type="text" id="id" name="id" placeholder="ID 입력" />
+                    <input type="text" id="userid" name="userid" placeholder="ID 입력" />
                 </td>
             </tr>
             <tr>
