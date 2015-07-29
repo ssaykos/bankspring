@@ -50,7 +50,7 @@ public class Command implements Orderable{
 
 	public void setPageNo(String pageNo) {
 		this.pageNo = Integer.parseInt(pageNo);
-		this.start = (Integer.parseInt(pageNo)-1*PAGESIZE+1);
+		this.start = (Integer.parseInt(pageNo)-1)*PAGESIZE+1;
 		this.end= Integer.parseInt(pageNo)*PAGESIZE;
 	}
 

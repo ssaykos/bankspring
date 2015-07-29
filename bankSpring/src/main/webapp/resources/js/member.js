@@ -48,6 +48,18 @@ var member = {
 	login : function() {
 	
 		document.frmLogin.submit();
+	},
+	checkAdmin : function(url) {
+		var isAdmin = confirm("관리자 입니까?");
+		if(!isAdmin){
+			alert("관리자만 접근가능합니다.");
+		}else {
+			var password = prompt("관리자 비번을 입력하세요.");
+			if(password==1){
+				location.href=url;
+			}else{
+				alert("관리자 비번을 틀리셨습니다.");
+			}
+		}
 	}
-	
 }

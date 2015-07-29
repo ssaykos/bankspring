@@ -2,6 +2,10 @@ package com.bankspring.domain;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+
+@Component("member")
 public class MemberDto {
 	private String userid;
 	private String name;

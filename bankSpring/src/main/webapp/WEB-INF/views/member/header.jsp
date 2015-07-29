@@ -10,9 +10,9 @@
 
 <header id="top">
 	<div id="login">
-		<a href="#joinForm" id="aJoin" class="popupOpen">회원가입</a> | 
-		<a href="#loginForm" id="aLogin" class="popupOpen">로그인</a> | 
-		<a href="#" id="admin">관리자</a>
+		${member.name} 님 환영합니다!! |
+		<a href="${root}/member/detail.do">마이페이지</a> |
+		<a href="${root}/member/logout.do">로그아웃</a>
 	</div>
 	<div class="clear"></div>
 	<nav id="topMenu">

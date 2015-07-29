@@ -10,13 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <update id="update" parameterType="Member" >
-        update member set member_name=#{member_name}, 
-                          member_pw=#{member_pw} , 
-                          member_phone=#{member_phone1}||#{member_phone2}||#{member_phone3},
-                          member_email=#{member_email}||#{member_email2},
-                          admin=#{admin},
-                          last_chg_date=sysdate
-        where member_id=#{member_id}
+        update member set password=#{password}, 
+                          email=#{email}
+        where userid=#{userid}
     </update>
     
     
